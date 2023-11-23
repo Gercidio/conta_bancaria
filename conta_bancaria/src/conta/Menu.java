@@ -1,19 +1,28 @@
 package conta;
 
 import java.util.Scanner;
-
 import conta.util.Cores;
+import conta.model.Conta;
 
 public class Menu {
 
 	public static void main(String[] args) {
+		
+		//teste classe conta
+		Conta c1 = new Conta(1, 123, 1, "Pernalonga", 10000.0f);
+		c1.visualizar();
+		c1.sacar(100.0f);
+		c1.visualizar();
+		c1.depositar(500.0f);
+		c1.visualizar();
+		
 		Scanner leia = new Scanner(System.in);
 		
 		int opcao;
 		
 		while(true) {
 			
-			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
+			System.out.println(Cores.TEXT_GREEN + Cores.ANSI_BLACK_BACKGROUND
 					+ "*****************************************************");
 			System.out.println("                                                     ");
 			System.out.println("                BANCO DO PERNALONGA                  ");
