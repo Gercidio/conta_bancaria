@@ -2,10 +2,14 @@ package conta;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Optional;
+import java.util.Optional;
 import java.util.Scanner;
-import conta.util.Cores;
+
+import conta.model.Conta;
 import conta.model.ContaCorrente;
 import conta.model.ContaPoupanca;
+import conta.util.Cores;
 
 
 public class Menu {
@@ -60,7 +64,7 @@ public class Menu {
 			}
 
 			if (opcao == 9) {
-				System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
+				System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Pernalonga - Looney Tunes Co.!");
 				sobre();
 				leia.close();
 				System.exit(0);
@@ -116,7 +120,44 @@ public class Menu {
 					break;
 				case 4:
 					System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n\n");
-
+					System.out.println("Digite o número da conta: ");
+					numero = leia.nextInt();
+					
+					Optional<Conta> conta = contas.buscarNaCollection(numero);
+					
+					if(conta.isPresent()) {
+						
+						System.out.println("Digite o número da Agência: ");
+						agencia = leia.nextInt();
+						
+						System.out.println("Digite o nome do Titular: ");
+						leia.skip("\\R");
+						titular = leia.nextLine();
+						tipo = conta.get().getTipo();
+								
+						System.out.println("Digite o tipo da Conta (1 - CC ou 2 - CP): ");
+						tipo = leia.nextInt();
+						
+						System.out.println("Digite o Saldo da conta: ");
+						saldo = leia.nextFloat();
+						
+						switch(tipo) {
+						case 1 -> {
+							System.out.println("Digite o limite da conta: ");
+							limite = leia.nextFloat();
+							contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+						}
+						case 2 -> {
+							System.out.println("Digite o dia do aniversário da conta: ");
+							aniversario = leia.nextInt();
+							contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+						}
+						
+					}
+						
+				}else
+						System.out.println("A conta número " + numero + " não foi encontrada");
+					
 					keyPress();
 					break;
 				case 5:
