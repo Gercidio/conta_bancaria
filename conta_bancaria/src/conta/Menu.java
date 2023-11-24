@@ -3,22 +3,46 @@ package conta;
 import java.util.Scanner;
 import conta.util.Cores;
 import conta.model.Conta;
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
+
 
 public class Menu {
 
 	public static void main(String[] args) {
 		
-		//teste classe conta
-		Conta c1 = new Conta(1, 123, 1, "Pernalonga", 10000.0f);
-		c1.visualizar();
-		c1.sacar(100.0f);
-		c1.visualizar();
-		c1.depositar(500.0f);
-		c1.visualizar();
-		
 		Scanner leia = new Scanner(System.in);
 		
 		int opcao;
+		
+			//Criar objeto da Classe Conta p/ testar
+		
+		Conta c1 = new Conta(1, 123, 1, "Daffy Duck", 200000.00f);
+		c1.visualizar();
+		System.out.println("Exibir o Saldo: " + c1.getSaldo());
+		c1.setSaldo(300000.00f);
+		c1.visualizar();
+		c1.sacar(410000.00f);
+		c1.visualizar();
+		c1.depositar(6000.00f);
+		c1.visualizar();
+		
+		//criar obj Conta COrrente p/ testar
+		ContaCorrente cc1 = new ContaCorrente(2, 456, 1, "Felipe", 100000.00f, 2000.00f);
+		cc1.visualizar();
+		cc1.sacar(101000.00f);
+		cc1.visualizar();
+		cc1.depositar(2000.00f);
+		cc1.visualizar();
+		
+		//criar obj Conta Poupança p/ testar
+
+		ContaPoupanca cp1 = new ContaPoupanca(3, 123, 2, "Vitor Nascimento", 3000.00f, 12);
+		cp1.visualizar();
+		cp1.sacar(1000.00f);
+		cp1.visualizar();
+		cp1.depositar(2000.00f);
+		cp1.visualizar();
 		
 		while(true) {
 			
