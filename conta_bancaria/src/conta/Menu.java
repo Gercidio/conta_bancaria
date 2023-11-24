@@ -20,9 +20,9 @@ public class Menu {
 		
 		ContaController contas = new ContaController();
 		
-		int opcao, numero, agencia, tipo, aniversario;
+		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 		
 		ContaCorrente cc1 = new ContaCorrente(contas.gerarNumero(), 123, 1, "Elmes Fudd", 2000.0f, 100.00f);
 		contas.cadastrar(cc1);
@@ -172,19 +172,52 @@ public class Menu {
 					break;
 				case 6:
 					System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
-
+					
+					System.out.println("Digite o número da conta: ");
+					numero = leia.nextInt();
+					
+					System.out.println("Digite o valor do saque: ");
+					valor = leia.nextInt();
+					
+					contas.sacar(numero, valor);
+					
 					keyPress();
 					break;
+					
 				case 7:
 					System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
 
+					System.out.println("Digite o número da conta: ");
+					numero = leia.nextInt();
+					
+					System.out.println("Digite o valor do deposito: ");
+					valor = leia.nextInt();
+					
+					contas.depositar(numero, valor);
+					
 					keyPress();
 					break;
 				case 8:
 					System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
 
+					System.out.println("Digite o número da conta de origem: ");
+					numero = leia.nextInt();
+					
+					System.out.println("Digite o número da conta de destino: ");
+					numeroDestino = leia.nextInt();
+					
+					if(numero != numeroDestino) {
+						
+					System.out.println("Digite o valor do deposito: ");
+					valor = leia.nextInt();
+					contas.transferir(numero, numeroDestino, valor);
+					
+					}else
+						System.out.println("Os números das contas são iguais!");
+					
 					keyPress();
 					break;
+					
 				default:
 					System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n" + Cores.TEXT_RESET);
 					
