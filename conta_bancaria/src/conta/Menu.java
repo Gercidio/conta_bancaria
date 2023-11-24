@@ -208,7 +208,7 @@ public class Menu {
 					
 					if(numero != numeroDestino) {
 						
-					System.out.println("Digite o valor do deposito: ");
+					System.out.println("Digite o valor da transferência: ");
 					valor = leia.nextInt();
 					contas.transferir(numero, numeroDestino, valor);
 					
