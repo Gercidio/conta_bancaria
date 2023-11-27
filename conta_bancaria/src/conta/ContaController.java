@@ -1,7 +1,9 @@
 package conta;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import conta.model.Conta;
 import conta.repository.Repository;
@@ -16,6 +18,7 @@ public class ContaController implements Repository{
 	
 	@Override
 	public void procurarPorNumero(int numero) {
+		
 //mudar p/optional
 		Optional<Conta> conta = buscarNaCollection(numero);
 
@@ -23,8 +26,17 @@ public class ContaController implements Repository{
 			conta.get().visualizar();
 		else
 			System.out.println("A Conta número: " + numero + " não foi encontrada!");
-	
+		
 	}
+	//testando lambda/streams
+	public void procurarPorNome(String titular) {
+		List<Conta> listaNomes = listaContas.stream()
+			.filter(c -> c.getTitular().contains(titular))
+			.collect(Collectors.toList());
+		for(var conta : listaNomes)
+		conta.visualizar();
+	}
+	
 	
 	@Override
 	public void listarTodas() {
